@@ -1464,3 +1464,1360 @@ footer > p {
     }
 
 }
+
+/* =========================================================
+   EXTRA PREMIUM ANIMATIONS
+   ========================================================= */
+
+/* ---------- Animated Background ---------- */
+
+body {
+    background:
+        radial-gradient(circle at 10% 20%, rgba(155, 92, 255, 0.10), transparent 25%),
+        radial-gradient(circle at 90% 70%, rgba(229, 108, 255, 0.08), transparent 25%),
+        #080812;
+}
+
+
+/* ---------- Floating Background Orbs ---------- */
+
+.hero::before {
+    animation: orbMove 8s ease-in-out infinite alternate;
+}
+
+.hero::after {
+    animation: orbMoveReverse 10s ease-in-out infinite alternate;
+}
+
+@keyframes orbMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px, 40px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(-30px, 90px) scale(0.9);
+    }
+}
+
+@keyframes orbMoveReverse {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-70px, -40px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(40px, -80px) scale(0.9);
+    }
+}
+
+
+/* ---------- Navbar ---------- */
+
+.navbar {
+    animation: navbarDrop 0.8s ease forwards;
+}
+
+@keyframes navbarDrop {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ---------- Logo Glow ---------- */
+
+.logo {
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(155, 92, 255, 0.8);
+}
+
+
+/* ---------- Navigation Hover ---------- */
+
+.navbar nav a {
+    position: relative;
+}
+
+.navbar nav a::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.navbar nav a:hover::before {
+    width: 100%;
+}
+
+
+/* ---------- Hero Entrance ---------- */
+
+.hero-content {
+    animation: heroContentIn 1s ease forwards;
+}
+
+.hero-profile {
+    animation: heroProfileIn 1.2s ease forwards;
+}
+
+@keyframes heroContentIn {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes heroProfileIn {
+    from {
+        opacity: 0;
+        transform: translateX(60px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+/* ---------- Small Title ---------- */
+
+.small-title {
+    animation: letterGlow 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes letterGlow {
+    from {
+        opacity: 0.65;
+        text-shadow: none;
+    }
+
+    to {
+        opacity: 1;
+        text-shadow: 0 0 18px rgba(193, 140, 255, 0.8);
+    }
+}
+
+
+/* ---------- Animated Gradient Name ---------- */
+
+.hero h1 span {
+    background-size: 200% auto;
+    animation: gradientText 4s linear infinite;
+}
+
+@keyframes gradientText {
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+
+/* ---------- Buttons ---------- */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0.6s;
+}
+
+.btn:hover::before {
+    left: 130%;
+}
+
+
+/* ---------- Primary Button Pulse ---------- */
+
+.primary-btn {
+    animation: buttonPulse 3s ease-in-out infinite;
+}
+
+@keyframes buttonPulse {
+    0%,
+    100% {
+        box-shadow: 0 10px 30px rgba(155, 92, 255, 0.2);
+    }
+
+    50% {
+        box-shadow:
+            0 10px 35px rgba(155, 92, 255, 0.45),
+            0 0 20px rgba(229, 108, 255, 0.15);
+    }
+}
+
+
+/* ---------- Profile Card ---------- */
+
+.profile-card {
+    animation:
+        float 4s ease-in-out infinite,
+        profileGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes profileGlow {
+    from {
+        border-color: rgba(155, 92, 255, 0.25);
+    }
+
+    to {
+        border-color: rgba(229, 108, 255, 0.7);
+    }
+}
+
+
+/* ---------- Avatar ---------- */
+
+.avatar {
+    animation: avatarPulse 3s ease-in-out infinite;
+}
+
+@keyframes avatarPulse {
+    0%,
+    100% {
+        box-shadow:
+            0 0 20px rgba(155, 92, 255, 0.25);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(155, 92, 255, 0.65),
+            0 0 60px rgba(229, 108, 255, 0.15);
+    }
+}
+
+
+/* ---------- Social Links ---------- */
+
+.social-links a {
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    text-shadow: 0 0 15px rgba(193, 140, 255, 0.8);
+}
+
+
+/* ---------- Section Headings ---------- */
+
+.section-heading h2 {
+    transition: 0.4s ease;
+}
+
+.section-heading h2:hover {
+    letter-spacing: 1px;
+    text-shadow: 0 0 25px rgba(155, 92, 255, 0.35);
+}
+
+
+/* ---------- About Card ---------- */
+
+.about-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-card::before {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: -60px;
+    right: -60px;
+    border-radius: 50%;
+    background: var(--purple);
+    filter: blur(50px);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.about-card:hover::before {
+    opacity: 0.25;
+}
+
+
+/* ---------- Skill Cards ---------- */
+
+.skill-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.04),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0.7s;
+}
+
+.skill-card:hover::after {
+    left: 130%;
+}
+
+.skill-icon {
+    display: inline-block;
+    transition: 0.4s ease;
+}
+
+.skill-card:hover .skill-icon {
+    transform: rotate(-8deg) scale(1.2);
+}
+
+
+/* ---------- Skill Tags ---------- */
+
+.tags span {
+    transition: all 0.3s ease;
+}
+
+.tags span:hover {
+    transform: translateY(-4px) scale(1.05);
+    background: rgba(155, 92, 255, 0.18);
+    border-color: rgba(193, 140, 255, 0.6);
+    box-shadow: 0 5px 20px rgba(155, 92, 255, 0.15);
+}
+
+
+/* ---------- Timeline ---------- */
+
+.timeline-dot {
+    animation: timelinePulse 2s ease-in-out infinite;
+}
+
+@keyframes timelinePulse {
+    0%,
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--purple);
+    }
+
+    50% {
+        transform: scale(1.35);
+        box-shadow:
+            0 0 25px var(--purple),
+            0 0 45px rgba(155, 92, 255, 0.3);
+    }
+}
+
+.timeline-card {
+    transition: all 0.4s ease;
+}
+
+.timeline-card:hover {
+    transform: translateX(8px);
+    border-color: rgba(155, 92, 255, 0.5);
+    box-shadow: -10px 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ---------- Project Cards ---------- */
+
+.project-card {
+    transition:
+        transform 0.5s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35),
+        0 0 30px rgba(155, 92, 255, 0.08);
+}
+
+
+/* ---------- Project Number ---------- */
+
+.project-number {
+    transition: 0.5s ease;
+}
+
+.project-card:hover .project-number {
+    color: rgba(193, 140, 255, 0.15);
+    transform: translateX(8px);
+}
+
+
+/* ---------- Project Technology Tags ---------- */
+
+.project-tech span {
+    transition: all 0.3s ease;
+}
+
+.project-tech span:hover {
+    transform: translateY(-3px);
+    background: rgba(155, 92, 255, 0.18);
+}
+
+
+/* ---------- Education Cards ---------- */
+
+.education-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.education-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 3px;
+    height: 0;
+    background: linear-gradient(
+        180deg,
+        var(--purple),
+        var(--pink)
+    );
+    transition: height 0.4s ease;
+}
+
+.education-card:hover::before {
+    height: 100%;
+}
+
+
+/* ---------- Soft Skills ---------- */
+
+.soft-skills span {
+    animation: softSkillFloat 4s ease-in-out infinite;
+}
+
+.soft-skills span:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.soft-skills span:nth-child(3) {
+    animation-delay: 0.8s;
+}
+
+.soft-skills span:nth-child(4) {
+    animation-delay: 1.2s;
+}
+
+@keyframes softSkillFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+
+/* ---------- Contact Icons ---------- */
+
+.contact-icon {
+    transition: all 0.4s ease;
+}
+
+.contact-item:hover .contact-icon {
+    transform: rotate(8deg) scale(1.12);
+    background: rgba(155, 92, 255, 0.2);
+    box-shadow: 0 0 20px rgba(155, 92, 255, 0.25);
+}
+
+
+/* ---------- Form Inputs ---------- */
+
+.input-group input,
+.input-group textarea {
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.input-group input:hover,
+.input-group textarea:hover {
+    border-color: rgba(155, 92, 255, 0.35);
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Send Button ---------- */
+
+.send-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.send-btn:hover {
+    letter-spacing: 0.5px;
+}
+
+
+/* ---------- Footer ---------- */
+
+.footer-logo {
+    transition: 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(155, 92, 255, 0.6);
+}
+
+
+/* ---------- Scroll Reveal Enhancement ---------- */
+
+.section,
+.soft-section {
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ---------- Respect Reduced Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+/* =========================================================
+   PREMIUM ANIMATED SKILL LEVELS
+   ========================================================= */
+
+/* Skill card */
+.skill-card {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(24, 20, 42, 0.95),
+            rgba(13, 13, 27, 0.98)
+        );
+
+    transition:
+        transform 0.45s ease,
+        border-color 0.45s ease,
+        box-shadow 0.45s ease;
+}
+
+/* Moving glow inside card */
+.skill-card::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    top: -100px;
+    right: -100px;
+
+    background: var(--purple);
+    filter: blur(80px);
+    opacity: 0;
+
+    transition: 0.5s ease;
+}
+
+.skill-card:hover::before {
+    opacity: 0.18;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+
+    border-color: rgba(193, 140, 255, 0.55);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35),
+        0 0 35px rgba(155, 92, 255, 0.10);
+}
+
+
+/* =========================================================
+   SKILL TAG CONTAINER
+   ========================================================= */
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+
+/* =========================================================
+   INDIVIDUAL SKILL
+   ========================================================= */
+
+.tags span {
+    position: relative;
+
+    width: 100%;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 14px;
+
+    background: rgba(255, 255, 255, 0.025);
+
+    border: 1px solid rgba(193, 140, 255, 0.16);
+
+    border-radius: 10px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 500;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* =========================================================
+   PROGRESS FILL
+   ========================================================= */
+
+.tags span::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: var(--level);
+    height: 100%;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(155, 92, 255, 0.22),
+            rgba(193, 140, 255, 0.42),
+            rgba(229, 108, 255, 0.20)
+        );
+
+    transform: scaleX(0);
+    transform-origin: left;
+
+    animation: skillFill 1.4s cubic-bezier(.22,1,.36,1) forwards;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   SHINE ANIMATION
+   ========================================================= */
+
+.tags span::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.12),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    animation: skillShine 4s ease-in-out infinite;
+
+    z-index: 1;
+}
+
+
+@keyframes skillFill {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
+@keyframes skillShine {
+
+    0% {
+        left: -100%;
+    }
+
+    45% {
+        left: 130%;
+    }
+
+    100% {
+        left: 130%;
+    }
+}
+
+
+/* =========================================================
+   SKILL NAME
+   ========================================================= */
+
+.tags span {
+    justify-content: flex-start;
+}
+
+.tags span {
+    text-shadow: 0 0 8px rgba(255,255,255,0.08);
+}
+
+
+/* =========================================================
+   PERCENTAGE BADGE
+   ========================================================= */
+
+.tags span .skill-percent {
+    position: absolute;
+    right: 10px;
+
+    min-width: 42px;
+    height: 26px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 8px;
+
+    border-radius: 6px;
+
+    background: rgba(8, 8, 18, 0.65);
+
+    border: 1px solid rgba(193, 140, 255, 0.25);
+
+    color: #c18cff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    backdrop-filter: blur(8px);
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   HOVER
+   ========================================================= */
+
+.tags span:hover {
+    transform: translateX(7px);
+
+    border-color: rgba(193, 140, 255, 0.55);
+
+    box-shadow:
+        0 0 20px rgba(155, 92, 255, 0.14);
+}
+
+
+/* =========================================================
+   LEVEL INDICATOR DOT
+   ========================================================= */
+
+.tags span .skill-dot {
+    position: absolute;
+
+    left: calc(var(--level) - 7px);
+
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px var(--purple),
+        0 0 18px var(--purple);
+
+    opacity: 0;
+
+    animation:
+        dotAppear 1.5s ease forwards,
+        dotPulse 2s ease-in-out infinite 1.5s;
+
+    z-index: 2;
+}
+
+
+@keyframes dotAppear {
+    to {
+        opacity: 1;
+    }
+}
+
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   SKILL LEVELS
+   ========================================================= */
+
+/* Programming */
+
+.skills-grid .skill-card:nth-child(1)
+.tags span:nth-child(1) {
+    --level: 85%;
+}
+
+.skills-grid .skill-card:nth-child(1)
+.tags span:nth-child(2) {
+    --level: 90%;
+}
+
+.skills-grid .skill-card:nth-child(1)
+.tags span:nth-child(3) {
+    --level: 78%;
+}
+
+.skills-grid .skill-card:nth-child(1)
+.tags span:nth-child(4) {
+    --level: 82%;
+}
+
+
+/* Web Development */
+
+.skills-grid .skill-card:nth-child(2)
+.tags span:nth-child(1) {
+    --level: 90%;
+}
+
+.skills-grid .skill-card:nth-child(2)
+.tags span:nth-child(2) {
+    --level: 88%;
+}
+
+.skills-grid .skill-card:nth-child(2)
+.tags span:nth-child(3) {
+    --level: 82%;
+}
+
+
+/* Database */
+
+.skills-grid .skill-card:nth-child(3)
+.tags span:nth-child(1) {
+    --level: 85%;
+}
+
+.skills-grid .skill-card:nth-child(3)
+.tags span:nth-child(2) {
+    --level: 88%;
+}
+
+
+/* Data Analytics */
+
+.skills-grid .skill-card:nth-child(4)
+.tags span:nth-child(1) {
+    --level: 80%;
+}
+
+.skills-grid .skill-card:nth-child(4)
+.tags span:nth-child(2) {
+    --level: 88%;
+}
+
+.skills-grid .skill-card:nth-child(4)
+.tags span:nth-child(3) {
+    --level: 82%;
+}
+
+
+/* Tools */
+
+.skills-grid .skill-card:nth-child(5)
+.tags span:nth-child(1) {
+    --level: 85%;
+}
+
+.skills-grid .skill-card:nth-child(5)
+.tags span:nth-child(2) {
+    --level: 88%;
+}
+
+.skills-grid .skill-card:nth-child(5)
+.tags span:nth-child(3) {
+    --level: 92%;
+}
+
+
+/* Other Skills */
+
+.skills-grid .skill-card:nth-child(6)
+.tags span:nth-child(1) {
+    --level: 90%;
+}
+
+.skills-grid .skill-card:nth-child(6)
+.tags span:nth-child(2) {
+    --level: 75%;
+}
+/* =========================================================
+   COMPACT PROFESSIONAL SKILLS DASHBOARD
+   ========================================================= */
+
+.skills-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+/* ---------- Skill Card ---------- */
+
+.compact-skill-card {
+    min-height: 260px;
+
+    padding: 22px;
+
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20, 25, 45, 0.98),
+            rgba(13, 17, 32, 0.98)
+        );
+
+    border: 1px solid rgba(150, 160, 190, 0.12);
+
+    border-radius: 12px;
+
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* Subtle glow */
+
+.compact-skill-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -70px;
+    top: -70px;
+
+    border-radius: 50%;
+
+    background: var(--purple);
+
+    filter: blur(60px);
+
+    opacity: 0;
+
+    transition: 0.5s ease;
+}
+
+.compact-skill-card:hover::before {
+    opacity: 0.16;
+}
+
+
+.compact-skill-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(155, 92, 255, 0.4);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(155, 92, 255, 0.08);
+}
+
+
+/* ---------- Card Header ---------- */
+
+.skill-card-top {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+}
+
+
+.skill-card-top .skill-icon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    border-radius: 7px;
+
+    background: rgba(155, 92, 255, 0.10);
+
+    border: 1px solid rgba(155, 92, 255, 0.18);
+}
+
+
+.skill-card-top h3 {
+    font-size: 15px;
+
+    margin: 0;
+
+    letter-spacing: -0.2px;
+}
+
+
+/* ---------- Technology Tags ---------- */
+
+.skill-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-bottom: 22px;
+}
+
+
+.skill-tags span {
+    padding: 5px 8px;
+
+    font-size: 9px;
+
+    color: #c9c9d8;
+
+    background: rgba(255, 255, 255, 0.045);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 5px;
+
+    transition: 0.3s ease;
+}
+
+
+.skill-tags span:hover {
+    color: #ffffff;
+
+    background: rgba(155, 92, 255, 0.16);
+
+    border-color: rgba(155, 92, 255, 0.4);
+
+    transform: translateY(-2px);
+}
+
+
+/* ---------- Level ---------- */
+
+.skill-level {
+    margin-top: 13px;
+}
+
+
+.level-info {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 6px;
+}
+
+
+.level-info span {
+    color: #aaaabd;
+
+    font-size: 9px;
+}
+
+
+.level-info strong {
+    color: #b98aff;
+
+    font-size: 9px;
+
+    font-weight: 700;
+}
+
+
+/* ---------- Progress Track ---------- */
+
+.progress {
+    width: 100%;
+
+    height: 4px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+}
+
+
+/* ---------- Animated Progress ---------- */
+
+.progress span {
+    display: block;
+
+    width: var(--progress);
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7d5cff,
+            #a76cff,
+            #e56cff
+        );
+
+    box-shadow:
+        0 0 8px rgba(155, 92, 255, 0.55);
+
+    transform: scaleX(0);
+
+    transform-origin: left;
+
+    animation:
+        skillBarFill 1.4s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+
+@keyframes skillBarFill {
+
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+
+}
+
+
+/* ---------- Moving Shine ---------- */
+
+.progress span::after {
+    content: "";
+
+    display: block;
+
+    width: 35px;
+    height: 100%;
+
+    margin-left: -40px;
+
+    background: rgba(255,255,255,0.45);
+
+    filter: blur(4px);
+
+    animation: progressShine 3s ease-in-out infinite;
+}
+
+
+@keyframes progressShine {
+
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    60% {
+        transform: translateX(250px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateX(250px);
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================================
+   STAGGERED CARD ENTRANCE
+   ========================================================= */
+
+.compact-skill-card {
+    opacity: 0;
+    transform: translateY(25px);
+    animation: skillCardAppear 0.7s ease forwards;
+}
+
+.compact-skill-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.compact-skill-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.compact-skill-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.compact-skill-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.compact-skill-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.compact-skill-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+
+@keyframes skillCardAppear {
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .compact-skill-card {
+        min-height: auto;
+    }
+
+}
