@@ -1,216 +1,572 @@
-/* =========================
-   MOBILE NAVIGATION
-========================= */
+/* =========================================================
+   PORTFOLIO JAVASCRIPT
+   ========================================================= */
 
-const menuBtn = document.getElementById("menuBtn");
-const navMenu = document.getElementById("navMenu");
-
-menuBtn.addEventListener("click", function () {
-
-    navMenu.classList.toggle("open");
-
-});
+document.addEventListener("DOMContentLoaded", function () {
 
 
-/* Close mobile menu after clicking a link */
+    /* =========================================================
+       MOBILE NAVIGATION
+       ========================================================= */
 
-const navLinks = document.querySelectorAll("#navMenu a");
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
 
-navLinks.forEach(function (link) {
+    if (menuBtn && navMenu) {
 
-    link.addEventListener("click", function () {
-
-        navMenu.classList.remove("open");
-
-    });
-
-});
-
-
-/* =========================
-   CONTACT FORM
-========================= */
-
-const contactForm = document.getElementById("contactForm");
-
-contactForm.addEventListener("submit", async function (event) {
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("name").value.trim();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const subject =
-        document.getElementById("subject").value.trim();
-
-    const message =
-        document.getElementById("message").value.trim();
-
-    const formMessage =
-        document.getElementById("formMessage");
+        menuBtn.addEventListener("click", function () {
+            navMenu.classList.toggle("open");
+        });
 
 
-    /* Basic validation */
+        /* Close mobile menu after clicking a link */
 
-    if (!name || !email || !message) {
+        const mobileNavLinks =
+            document.querySelectorAll("#navMenu a");
 
-        formMessage.textContent =
-            "Please fill in all required fields.";
+        mobileNavLinks.forEach(function (link) {
 
-        return;
+            link.addEventListener("click", function () {
+                navMenu.classList.remove("open");
+            });
+
+        });
 
     }
 
 
-    formMessage.textContent =
-        "Sending message...";
+    /* =========================================================
+       CONTACT FORM
+       ========================================================= */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    if (contactForm) {
+
+        contactForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
 
 
-    try {
+                /* Get form values */
 
-        const response = await fetch("/contact", {
+                const nameElement =
+                    document.getElementById("name");
 
-            method: "POST",
+                const emailElement =
+                    document.getElementById("email");
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+                const subjectElement =
+                    document.getElementById("subject");
 
-            body: JSON.stringify({
+                const messageElement =
+                    document.getElementById("message");
 
-                name: name,
+                const formMessage =
+                    document.getElementById("formMessage");
 
-                email: email,
 
-                subject: subject,
+                const name =
+                    nameElement
+                        ? nameElement.value.trim()
+                        : "";
 
-                message: message
+                const email =
+                    emailElement
+                        ? emailElement.value.trim()
+                        : "";
 
-            })
+                const subject =
+                    subjectElement
+                        ? subjectElement.value.trim()
+                        : "";
+
+                const message =
+                    messageElement
+                        ? messageElement.value.trim()
+                        : "";
+
+
+                /* Basic validation */
+
+                if (!name || !email || !message) {
+
+                    if (formMessage) {
+
+                        formMessage.textContent =
+                            "Please fill in all required fields.";
+
+                    }
+
+                    return;
+                }
+
+
+                /* Sending message */
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        "Sending message...";
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch("/contact", {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                name: name,
+
+                                email: email,
+
+                                subject: subject,
+
+                                message: message
+
+                            })
+
+                        });
+
+
+                    const result =
+                        await response.json();
+
+
+                    /* Success */
+
+                    if (response.ok) {
+
+                        if (formMessage) {
+
+                            formMessage.textContent =
+                                "✓ Message sent successfully!";
+
+                        }
+
+                        contactForm.reset();
+
+                    }
+
+
+                    /* Server error */
+
+                    else {
+
+                        if (formMessage) {
+
+                            formMessage.textContent =
+                                result.message ||
+                                "Something went wrong.";
+
+                        }
+
+                    }
+
+
+                }
+
+
+                /* Connection error */
+
+                catch (error) {
+
+                    console.error(
+                        "Contact form error:",
+                        error
+                    );
+
+
+                    if (formMessage) {
+
+                        formMessage.textContent =
+                            "Unable to connect to the server.";
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       SECTION SCROLL ANIMATION
+       ========================================================= */
+
+    const sections =
+        document.querySelectorAll(
+            ".section, .soft-section"
+        );
+
+
+    if ("IntersectionObserver" in window) {
+
+        const sectionObserver =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "show"
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.12
+                }
+
+            );
+
+
+        sections.forEach(function (section) {
+
+            sectionObserver.observe(section);
+
+        });
+
+    }
+
+
+    /* =========================================================
+       EDUCATION CARD SCROLL ANIMATION
+       ========================================================= */
+
+    const educationCards =
+        document.querySelectorAll(
+            "#education .education-card"
+        );
+
+
+    if ("IntersectionObserver" in window) {
+
+        const educationObserver =
+            new IntersectionObserver(
+
+                function (entries) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "education-visible"
+                            );
+
+
+                            /*
+                               Stop observing this card
+                               after it has appeared
+                            */
+
+                            educationObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+
+                {
+                    threshold: 0.15
+                }
+
+            );
+
+
+        educationCards.forEach(function (card) {
+
+            educationObserver.observe(card);
+
+        });
+
+    }
+
+
+    /* =========================================================
+       ACTIVE NAVIGATION
+       ========================================================= */
+
+    const allSections =
+        document.querySelectorAll(
+            "section[id]"
+        );
+
+
+    const navLinks =
+        document.querySelectorAll(
+            "#navMenu a"
+        );
+
+
+    function updateActiveNavigation() {
+
+        let current = "";
+
+
+        allSections.forEach(function (section) {
+
+            const sectionTop =
+                section.offsetTop - 150;
+
+
+            if (
+                window.scrollY >= sectionTop
+            ) {
+
+                current =
+                    section.getAttribute("id");
+
+            }
 
         });
 
 
-        const result = await response.json();
+        navLinks.forEach(function (link) {
+
+            link.classList.remove("active");
 
 
-        if (response.ok) {
+            if (
+                link.getAttribute("href") ===
+                "#" + current
+            ) {
 
-            formMessage.textContent =
-                "✓ Message sent successfully!";
+                link.classList.add("active");
 
-            contactForm.reset();
+            }
 
-        } else {
-
-            formMessage.textContent =
-                result.message ||
-                "Something went wrong.";
-
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "Contact form error:",
-            error
-        );
-
-        formMessage.textContent =
-            "Unable to connect to the server.";
+        });
 
     }
 
-});
 
+    /* Run active navigation while scrolling */
 
-/* =========================
-   SCROLL ANIMATION
-========================= */
-
-const sections =
-    document.querySelectorAll(
-        ".section, .soft-section"
+    window.addEventListener(
+        "scroll",
+        updateActiveNavigation
     );
 
 
-const observer =
-    new IntersectionObserver(
+    /* Run once when page loads */
 
-        function (entries) {
+    updateActiveNavigation();
 
-            entries.forEach(function (entry) {
 
-                if (entry.isIntersecting) {
+});
 
-                    entry.target.classList.add("show");
+/* =========================================================
+   PORTFOLIO INTERACTIVE ANIMATIONS & HANDLERS
+   ========================================================= */
 
-                }
+document.addEventListener("DOMContentLoaded", function () {
 
+    /* =========================================================
+       1. MOBILE NAVIGATION
+       ========================================================= */
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+
+    if (menuBtn && navMenu) {
+        menuBtn.addEventListener("click", function () {
+            navMenu.classList.toggle("open");
+        });
+
+        const mobileNavLinks = document.querySelectorAll("#navMenu a");
+        mobileNavLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                navMenu.classList.remove("open");
             });
+        });
+    }
 
-        },
+    /* =========================================================
+       2. SKILL PROGRESS BAR ANIMATION ON SCROLL
+       ========================================================= */
+    const skillCards = document.querySelectorAll(".compact-skill-card");
 
-        {
-            threshold: 0.12
-        }
+    if ("IntersectionObserver" in window) {
+        const skillObserver = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        const progressBars = entry.target.querySelectorAll(".progress span");
+                        progressBars.forEach(function (bar) {
+                            const progressValue = bar.style.getPropertyValue("--progress");
+                            bar.style.width = progressValue || "0%";
+                        });
+                        skillObserver.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
 
-    );
+        skillCards.forEach(function (card) {
+            skillObserver.observe(card);
+        });
+    }
 
+    /* =========================================================
+       3. INTERACTIVE 3D TILT EFFECT ON PROJECTS
+       ========================================================= */
+    const projectCards = document.querySelectorAll(".project-card");
 
-sections.forEach(function (section) {
+    projectCards.forEach(function (card) {
+        card.addEventListener("mousemove", function (e) {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-    observer.observe(section);
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-});
+            const rotateX = (y - centerY) / 20;
+            const rotateY = (centerX - x) / 20;
 
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
 
-/* =========================
-   ACTIVE NAVIGATION
-========================= */
-
-const allSections =
-    document.querySelectorAll("section[id]");
-
-
-window.addEventListener("scroll", function () {
-
-    let current = "";
-
-    allSections.forEach(function (section) {
-
-        const sectionTop =
-            section.offsetTop - 150;
-
-        if (
-            window.scrollY >= sectionTop
-        ) {
-
-            current =
-                section.getAttribute("id");
-
-        }
-
+        card.addEventListener("mouseleave", function () {
+            card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
+        });
     });
 
+    /* =========================================================
+       4. CONTACT FORM INTEGRATION (UNTOUCHED BACKEND CONNECTION)
+       ========================================================= */
+    const contactForm = document.getElementById("contactForm");
 
-    navLinks.forEach(function (link) {
+    if (contactForm) {
+        contactForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
 
-        link.classList.remove("active");
+            const nameElement = document.getElementById("name");
+            const emailElement = document.getElementById("email");
+            const subjectElement = document.getElementById("subject");
+            const messageElement = document.getElementById("message");
+            const formMessage = document.getElementById("formMessage");
 
-        if (
-            link.getAttribute("href") ===
-            "#" + current
-        ) {
+            const name = nameElement ? nameElement.value.trim() : "";
+            const email = emailElement ? emailElement.value.trim() : "";
+            const subject = subjectElement ? subjectElement.value.trim() : "";
+            const message = messageElement ? messageElement.value.trim() : "";
 
-            link.classList.add("active");
+            if (!name || !email || !message) {
+                if (formMessage) {
+                    formMessage.textContent = "Please fill in all required fields.";
+                }
+                return;
+            }
 
-        }
+            if (formMessage) {
+                formMessage.textContent = "Sending message...";
+            }
 
-    });
+            try {
+                const response = await fetch("/contact", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message
+                    })
+                });
 
+                const result = await response.json();
+
+                if (response.ok) {
+                    if (formMessage) {
+                        formMessage.textContent = "✓ Message sent successfully!";
+                    }
+                    contactForm.reset();
+                } else {
+                    if (formMessage) {
+                        formMessage.textContent = result.message || "Something went wrong.";
+                    }
+                }
+            } catch (error) {
+                console.error("Contact form error:", error);
+                if (formMessage) {
+                    formMessage.textContent = "Unable to connect to the server.";
+                }
+            }
+        });
+    }
+
+    /* =========================================================
+       5. SECTION SCROLL REVEAL & NAVIGATION
+       ========================================================= */
+    const sections = document.querySelectorAll(".section, .soft-section");
+
+    if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver(
+            function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            },
+            { threshold: 0.12 }
+        );
+
+        sections.forEach(function (section) {
+            sectionObserver.observe(section);
+        });
+    }
+
+    const allSections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("#navMenu a");
+
+    function updateActiveNavigation() {
+        let current = "";
+        allSections.forEach(function (section) {
+            const sectionTop = section.offsetTop - 150;
+            if (window.scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach(function (link) {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", updateActiveNavigation);
+    updateActiveNavigation();
 });

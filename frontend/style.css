@@ -2821,3 +2821,215 @@ body {
     }
 
 }
+/* =========================================================
+   EDUCATION SCROLL ANIMATION
+   ========================================================= */
+
+/* Cards are hidden initially */
+#education .education-card {
+    opacity: 0 !important;
+    transform: translateY(100px) !important;
+
+    animation: none !important;
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+
+/* Cards become visible when JavaScript adds the class */
+#education .education-card.education-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+
+/* Staggered animation */
+#education .education-card:nth-child(1) {
+    transition-delay: 0.05s !important;
+}
+
+#education .education-card:nth-child(2) {
+    transition-delay: 0.20s !important;
+}
+
+#education .education-card:nth-child(3) {
+    transition-delay: 0.35s !important;
+}
+
+#education .education-card:nth-child(4) {
+    transition-delay: 0.50s !important;
+}
+
+
+/* Hover after appearing */
+#education .education-card.education-visible:hover {
+    transform: translateY(-8px) !important;
+
+    border-color: rgba(155, 92, 255, 0.55);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 25px rgba(155, 92, 255, 0.12);
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    #education .education-card {
+        transform: translateY(70px) !important;
+    }
+
+    #education .education-card.education-visible {
+        transform: translateY(0) !important;
+    }
+
+}
+/* =========================================================
+   PORTFOLIO ENHANCED ANIMATIONS & HOVER EFFECTS
+   ========================================================= */
+
+:root {
+    --bg: #080812;
+    --bg-light: #10101d;
+    --card: #121222;
+    --purple: #9b5cff;
+    --purple-light: #c18cff;
+    --pink: #e56cff;
+    --text: #ffffff;
+    --muted: #a7a7b8;
+    --border: rgba(255, 255, 255, 0.09);
+}
+
+/* Base Body Ambient Glow */
+body {
+    background:
+        radial-gradient(circle at 15% 15%, rgba(155, 92, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(229, 108, 255, 0.10), transparent 30%),
+        #080812;
+}
+
+/* --- Animated Gradient Buttons --- */
+.btn, .send-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn::before, .send-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: skewX(-20deg);
+    transition: 0.6s ease;
+    z-index: -1;
+}
+
+.btn:hover::before, .send-btn:hover::before {
+    left: 130%;
+}
+
+.primary-btn:hover, .send-btn:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 
+        0 12px 35px rgba(155, 92, 255, 0.45),
+        0 0 20px rgba(229, 108, 255, 0.3);
+}
+
+.secondary-btn:hover {
+    background: rgba(155, 92, 255, 0.2);
+    border-color: var(--purple-light);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(155, 92, 255, 0.25);
+}
+
+/* --- Project Cards Tilt & Lighting Effect --- */
+.project-card {
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+    will-change: transform;
+}
+
+.project-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    border-color: rgba(193, 140, 255, 0.6);
+    box-shadow: 
+        0 20px 45px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(155, 92, 255, 0.25);
+}
+
+.project-tech span {
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-tech span {
+    background: rgba(155, 92, 255, 0.25);
+    border-color: rgba(193, 140, 255, 0.5);
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* --- Skill Progress Bars Animated Fill --- */
+.progress span {
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.compact-skill-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(193, 140, 255, 0.5);
+    box-shadow: 0 15px 35px rgba(155, 92, 255, 0.2);
+}
+
+.compact-skill-card:hover .skill-icon {
+    transform: rotate(12deg) scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+/* --- Floating Profile Card Effect --- */
+.profile-card {
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-card:hover {
+    border-color: var(--pink);
+    box-shadow: 
+        0 20px 60px rgba(155, 92, 255, 0.35),
+        0 0 40px rgba(229, 108, 255, 0.2);
+}
+
+/* --- Social Icons Pulse --- */
+.social-links a {
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--pink);
+    transform: translateY(-4px) scale(1.1);
+    text-shadow: 0 0 12px rgba(229, 108, 255, 0.6);
+}
+
+/* --- Interactive Contact Form Inputs --- */
+.input-group input, .input-group textarea {
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    border-color: var(--purple-light);
+    box-shadow: 0 0 15px rgba(155, 92, 255, 0.25);
+    transform: translateY(-2px);
+}
